@@ -39,6 +39,7 @@ public class DialogManager : Singleton<DialogManager>
 
     public void RemoveDialog()
     {
+        if (DialogStack.Count == 0) return;
         Destroy(DialogStack.Pop().gameObject);
     }
 }

@@ -6,60 +6,41 @@ public class NumInputItem : MonoBehaviour
 {
     [SerializeField] private Image NumberInputImage;
     [SerializeField] private Text NumberInpuText;
-
     private int Number;
     private bool Clear;
+    private Button button;
 
+    private void Awake() => button = GetComponent<Button>();
     private void OnEnable()
     {
         EventAggregator.Instance.Subscribe<EventUI.EventClickClear>(EventClickEvent);
         EventAggregator.Instance.Subscribe<EventUI.EventInputNumCheck>(EventNumberFull);
     }
-
     private void OnDisable()
     {
         EventAggregator.Instance.Unsubscribe<EventUI.EventClickClear>(EventClickEvent);
         EventAggregator.Instance.Unsubscribe<EventUI.EventInputNumCheck>(EventNumberFull);
     }
-
-    private void EventClickEvent(EventUI.EventClickClear _event)
+    private void EventClickEvent(EventUI.EventClickClear change)
     {
-        if (Clear) return;
-        if (_event.Number == Number) return;
-        NumberInputImage.color = Color.white;
+        NumberInputImage.color = Clear ? Color.black : change.Number == Number ? Color.gray : Color.white;
     }
-
-    private void EventNumberFull(EventUI.EventInputNumCheck _event)
+    private void EventNumberFull(EventUI.EventInputNumCheck change)
     {
-        if (Clear) return;
-        if (_event.Number != Number) return;
-        Clear = true;
-        NumberInputImage.color = Color.black;
+        if (change.Number != Number) return;
+        Clear = change.Remaining == 0;
+        if (button != null) button.interactable = !Clear;
     }
-
-    public void InitItem(SquItem[,] _item, int _idx)
+    public void InitItem(SquItem[,] unused, int number)
     {
         Clear = false;
-        Number = _idx;
+        Number = number;
         NumberInpuText.text = Number.ToString();
         NumberInputImage.color = Color.white;
+        if (button != null) button.interactable = true;
     }
-
     public void OnClickInput()
     {
-        if (Clear) return;
-
-        var manager = GameManager.Instance;
-
-        if (manager.ClickNum == Number)
-        {
-            manager.ClickNum = 0;
-            NumberInputImage.color = Color.white;
-            return;
-        }
-
-        manager.ClickNum = Number;
-        NumberInputImage.color = Color.gray;
-        EventAggregator.Instance.Publish<EventUI.EventClickClear>(new EventUI.EventClickClear() { Number = Number });
+        if (!Clear) GameManager.Instance.SelectNumber(Number);
     }
 }

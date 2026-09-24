@@ -14,21 +14,18 @@ public class MainUI : MonoBehaviour
     private List<BigSquItem> BigSquItem = new List<BigSquItem>(9);
     private List<NumInputItem> NumInputUIList = new List<NumInputItem>(9);
 
-    private bool TimeFlow;
-    private float DeltaTime;
+    private int displayedSeconds = -1;
     
     public void InitUI(SquItem[,] _squArray)
     {
         InitData();
         InitSquItem(_squArray);
         InitInputItem(_squArray);
-        TimeFlow = true;
     }
 
     private void InitData()
     {
-        TimeFlow = false;
-        DeltaTime = 0;
+        displayedSeconds = -1;
         TimeText.text = "00:00";
     }
 
@@ -82,13 +79,12 @@ public class MainUI : MonoBehaviour
         GameManager.Instance.BlankHint();
     }
 
-    void Update()
+    void LateUpdate()
     {
-        if (TimeFlow == false) return;
-        if (DialogManager.Instance.Open) return;
-
-        DeltaTime += Time.deltaTime;
-        TimeText.text = TimeTextString((int)DeltaTime);
+        int seconds = (int)GameManager.Instance.ElapsedSeconds;
+        if (seconds == displayedSeconds) return;
+        displayedSeconds = seconds;
+        TimeText.text = TimeTextString(seconds);
     }
 
     private string TimeTextString(int _time)
