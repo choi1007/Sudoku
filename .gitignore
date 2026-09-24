@@ -1,7 +1,46 @@
-/Library
-/obj
-/Assembly-CSharp.csproj
-/ProjectK.sln
-/.vs
-/Temp
-/Logs
+# =============== #
+# Unity generated #
+# =============== #
+
+# User-specific files
+.idea/
+.vs/
+.vscode/
+*/.user
+*/.userprefs
+*/.pidb
+*/.suo
+*/.user
+*/.unityproj
+*/.tmproj
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# =============== #
+# Unity specific #
+# =============== #
+
+# Unity Cache
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+UserSettings/
+.idea/
+Build/
