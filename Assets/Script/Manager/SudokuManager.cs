@@ -1,6 +1,6 @@
 using System;
 
-/// <summary>Generates a solved board, then removes clues only while the solution remains unique.</summary>
+/// <summary>완성된 정답 보드를 생성한 뒤, 해답이 하나로 유지되는 경우에만 단서 숫자를 제거합니다.</summary>
 public sealed class SudokuManager
 {
     private readonly int level;
@@ -26,8 +26,8 @@ public sealed class SudokuManager
             int value = positions[i]; positions[i] = positions[j]; positions[j] = value;
         }
 
-        // Levels retain the original approximate blank ratio, not a logical difficulty rating.
-        // If uniqueness prevents the target, keep more clues instead of accepting ambiguity.
+        // 레벨은 기존의 대략적인 빈칸 비율을 유지하며, 논리적 풀이 난이도를 평가한 값은 아닙니다.
+        // 목표 빈칸 수에서 유일해를 유지할 수 없다면 단서 숫자를 더 남깁니다.
         int targetBlanks = 81 * level / 10;
         int removed = 0;
         foreach (int position in positions)

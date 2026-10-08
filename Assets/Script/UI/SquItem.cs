@@ -1,4 +1,4 @@
-/// <summary>Cell identity and solution are immutable; only the session changes player input.</summary>
+/// <summary>칸의 좌표와 정답은 변경할 수 없으며, 플레이어의 입력 상태는 세션에서만 변경합니다.</summary>
 public sealed class SquItem
 {
     public int Row { get; }

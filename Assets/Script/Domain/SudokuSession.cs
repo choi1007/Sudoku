@@ -4,7 +4,7 @@ using System.Collections.Generic;
 public enum SudokuGameState { Playing, Completed }
 public enum SudokuInputResult { Ignored, Incorrect, Correct }
 
-/// <summary>Owns all mutable game state; UI only reads cells and submits commands.</summary>
+/// <summary>변경 가능한 모든 게임 상태를 관리합니다. UI는 칸의 상태를 읽고 명령만 전달합니다.</summary>
 public sealed class SudokuSession
 {
     private readonly SquItem[,] cells = new SquItem[9, 9];
@@ -53,7 +53,7 @@ public sealed class SudokuSession
         if (random == null) throw new ArgumentNullException(nameof(random));
         int skip = random.Next(unresolved.Count);
         int selected = -1;
-        // Enumerate at most 81 entries, without allocating a filtered list.
+        // 별도의 필터링된 목록을 만들지 않고 최대 81개 항목을 순회합니다.
         foreach (int position in unresolved)
         {
             if (skip-- == 0) { selected = position; break; }

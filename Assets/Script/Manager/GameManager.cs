@@ -1,7 +1,7 @@
 using Event;
 using UnityEngine;
 
-/// <summary>Coordinates the domain session, prefab UI, and existing UI event bus.</summary>
+/// <summary>게임 세션과 프리팹 UI를 연결하고 기존 UI 이벤트 전달 체계를 통해 상태 변경을 알립니다.</summary>
 public class GameManager : Singleton<GameManager>
 {
     public int SudokuLevel = 1;

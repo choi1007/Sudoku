@@ -1,6 +1,6 @@
 using System;
 
-/// <summary>Immutable puzzle definition, separate from a player's progress.</summary>
+/// <summary>플레이어의 진행 상태와 분리하여 초기 문제와 정답을 변경 불가능한 형태로 보관합니다.</summary>
 public sealed class SudokuPuzzle
 {
     private readonly int[,] solution;

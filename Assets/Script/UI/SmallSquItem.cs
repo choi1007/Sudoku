@@ -18,7 +18,7 @@ public class SmallSquItem : MonoBehaviour
         if (cell != null && cell.Row == change.Row && cell.Column == change.Column) Refresh();
     }
 
-    // Keep existing callers and prefab event bindings compatible.
+    // 기존 호출 코드와 프리팹 이벤트 연결의 호환성을 유지합니다.
     public void InitSamllSqu(SquItem data)
     {
         cell = data;

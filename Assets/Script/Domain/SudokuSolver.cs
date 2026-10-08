@@ -1,6 +1,6 @@
 using System;
 
-/// <summary>Independent searches own their board and row/column/box bit masks.</summary>
+/// <summary>각 탐색은 독립적인 보드와 행·열·3×3 박스의 비트마스크를 사용합니다.</summary>
 public sealed class SudokuSolver
 {
     private const int AllDigits = 0x3FE;
@@ -74,7 +74,7 @@ public sealed class SudokuSolver
                 return 1;
             }
 
-            // Local candidates cannot be overwritten by a recursive child.
+            // 후보 배열을 지역 변수로 두어 하위 재귀 호출이 현재 후보를 덮어쓰지 못하게 합니다.
             var candidates = new int[bestCount];
             int index = 0;
             for (int value = 1; value <= 9; value++)
